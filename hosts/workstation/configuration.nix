@@ -92,7 +92,7 @@
   # Define a user account
   users.users.danny = {
     isNormalUser = true;
-    description = "Danny";
+    description = "Daniel ADJIWANOU";
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "qemu" "wireshark" "incus-admin" ]; # Add user to necessary groups
   };
 
