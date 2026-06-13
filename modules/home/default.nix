@@ -3,6 +3,8 @@
 {
   imports = [
     ./plasma-config.nix
+    inputs.zen-browser.homeModules.default
+    inputs.caelestia-shell.homeManagerModules.default
   ];
 
   home.username = "danny";
@@ -79,7 +81,6 @@
 
     # Gaming & Browsers
     prismlauncher
-    # zen-browser
     firefox
     google-chrome
     vesktop
@@ -153,7 +154,23 @@
     BROWSER = "zen";
   };
 
-  # Caelestia dots were here but inputs are missing from flake.nix
+  # Caelestia dots configuration
+  xdg.configFile = {
+    "hypr".source = "${inputs.caelestia-dots}/hypr";
+    "foot".source = "${inputs.caelestia-dots}/foot";
+    "fish".source = "${inputs.caelestia-dots}/fish";
+    "fastfetch".source = "${inputs.caelestia-dots}/fastfetch";
+    "btop".source = "${inputs.caelestia-dots}/btop";
+    "uwsm".source = "${inputs.caelestia-dots}/uwsm";
+    "starship.toml".source = "${inputs.caelestia-dots}/starship.toml";
+  };
+
+  # Enable Caelestia shell
+  programs.caelestia.enable = true;
+  programs.caelestia.cli.enable = true;
+
+  # Enable Zen Browser
+  programs.zen-browser.enable = true;
 
   # Prism Launcher offline accounts configuration
   home.file.".local/share/PrismLauncher/accounts.json".text = ''
@@ -186,6 +203,7 @@
   # Zsh configuration
   programs.zsh = {
     enable = true;
+    enableCompletion = true;
     
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
