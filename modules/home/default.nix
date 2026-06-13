@@ -91,13 +91,15 @@
   # Shell aliases
   home.shellAliases = {
     cat = "bat";
+    ls = "eza";
+    ll = "eza -l";
   };
 
   # Program configurations (dotfiles)
   programs.git = {
     enable = true;
-    userName = "Danny";
-    userEmail = "danny@example.com"; # Change this to your email
+    userName = "The-darknova";
+    userEmail = "dannybloodfallen@gmail.com"; # Change this to your email
   };
 
   programs.zsh = {

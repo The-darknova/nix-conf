@@ -40,12 +40,56 @@
     sleuthkit
     yara
     cyberchef
+    zeek
+    appimage-run
 
     # Gaming & Browsers
     prismlauncher
     zen-browser
     firefox
     google-chrome
+    vesktop
+
+    # Antigravity Development
+    antigravity
+    antigravity-cli
+
+    # Programming Languages & Toolchains
+    python3
+    go
+    cargo
+    rustc
+    php
+    jdk
+    gcc
+    gnumake
+    cmake
+
+    # Office & Productivity
+    onlyoffice-bin
+    obsidian
+    keepassxc
+    zathura
+
+    # Graphics & Design Tools
+    inkscape
+    gimp
+    krita
+    imagemagick
+
+    # Miscellaneous Utilities
+    winboat
+    spotify
+    youtube-dl
+    diffutils
+    gh
+    gemini-cli
+    kubectl
+    kubernetes-helm
+    k9s
+    terraform
+    opentofu
+    docker-compose
   ];
 
   xdg.mimeApps = {
@@ -78,9 +122,17 @@
   programs.zsh = {
     enable = true;
     
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "sudo" ];
+      plugins = [
+        "git" "urltools" "bgnotify" "aliases" "ansible" "colorize"
+        "docker" "docker-compose" "golang" "grc" "helm" "kubectl"
+        "minikube" "pip" "podman" "ssh" "sudo" "vagrant" "copyfile"
+        "argocd" "opentofu" "terraform"
+      ];
     };
 
     initExtra = ''
@@ -94,7 +146,30 @@
       alias ports="sudo lsof -i -P -n | grep LISTEN"
       alias myip="curl -s ifconfig.me"
       alias pcap-capture="sudo tcpdump -i any -w capture.pcap"
+
+      # NVM setup
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+      # Bind keys
+      bindkey  "^[[H"   beginning-of-line
+      bindkey  "^[[F"   end-of-line
+      bindkey  "^[[3~"  delete-char
+
+      # Local bin path
+      export PATH="/home/danny/.local/bin:$PATH"
     '';
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   # Let Home Manager install and manage itself
@@ -106,5 +181,5 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "24.05";
+  home.stateVersion = "26.05";
 }
