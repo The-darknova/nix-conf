@@ -102,11 +102,9 @@
   # Enable Steam for gaming
   programs.steam.enable = true;
 
-  # Enable Android Debug Bridge (ADB)
-  programs.adb.enable = true;
-
   # Base system packages
   environment.systemPackages = with pkgs; [
+    android-tools
     wget
     curl
     git
@@ -126,6 +124,7 @@
   nix.settings.auto-optimise-store = true;
 
   # Hardening: Firewall Configuration
+  networking.nftables.enable = true;
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [ ]; # Strict default for laptops

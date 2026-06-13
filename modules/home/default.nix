@@ -8,9 +8,6 @@
   home.username = "danny";
   home.homeDirectory = "/home/danny";
 
-  # Allow unfree packages for home-manager as well
-  nixpkgs.config.allowUnfree = true;
-
   home.packages = with pkgs; [
     # --- Sysadmin Toolkit ---
     # Networking
@@ -102,8 +99,12 @@
   # Program configurations (dotfiles)
   programs.git = {
     enable = true;
-    userName = "The-darknova";
-    userEmail = "dannybloodfallen@gmail.com"; # Change this to your email
+    extraConfig = {
+      user = {
+        name = "The-darknova";
+        email = "dannybloodfallen@gmail.com";
+      };
+    };
   };
 
   programs.zsh = {

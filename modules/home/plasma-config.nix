@@ -340,24 +340,24 @@
     };
     configFile = {
       dolphinrc = {
-        dolphinrc.General.ViewPropsTimestamp = "2026,4,15,19,5,45.108";
+        General.ViewPropsTimestamp = "2026,4,15,19,5,45.108";
         "KFileDialog Settings" = {
           "Places Icons Auto-resize" = false;
           "Places Icons Static Size" = 22;
         };
-        dolphinrc.PreviewSettings.Plugins = "audiothumbnail,comicbookthumbnail,cursorthumbnail,directorythumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,opendocumentthumbnail,svgthumbnail,windowsexethumbnail,windowsimagethumbnail,fontthumbnail,blenderthumbnail,gsthumbnail,mobithumbnail,rawthumbnail,ffmpegthumbs,gsf-office";
-        dolphinrc.VersionControl.enabledPlugins = "Git";
+        PreviewSettings.Plugins = "audiothumbnail,comicbookthumbnail,cursorthumbnail,directorythumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,opendocumentthumbnail,svgthumbnail,windowsexethumbnail,windowsimagethumbnail,fontthumbnail,blenderthumbnail,gsthumbnail,mobithumbnail,rawthumbnail,ffmpegthumbs,gsf-office";
+        VersionControl.enabledPlugins = "Git";
       };
       kcminputrc = {
         "Libinput/1739/52907/SYNA30FE:00 06CB:CEAB Touchpad" = {
           NaturalScroll = true;
           PointerAcceleration = 0.400;
         };
-        kcminputrc.Mouse.cursorTheme = "dotilt-black";
+        Mouse.cursorTheme = "dotilt-black";
       };
       kdeglobals = {
-        kdeglobals.General.LastUsedCustomAccentColor = "233,58,154";
-        kdeglobals.Icons.Theme = "Colorful-Dark-Icons";
+        General.LastUsedCustomAccentColor = "233,58,154";
+        Icons.Theme = "Colorful-Dark-Icons";
         KDE = {
           AnimationDurationFactor = 0.5;
           ShowDeleteCommand = true;
@@ -417,9 +417,9 @@
           InDistance = 50;
           InRotationAngle = 10;
         };
-        kwinrc.Effect-magiclamp.AnimationDuration = 350;
-        kwinrc.Effect-mousemark.Color = "255,192,128";
-        kwinrc.Effect-translucency.MoveResize = 70;
+        Effect-magiclamp.AnimationDuration = 350;
+        Effect-mousemark.Color = "255,192,128";
+        Effect-translucency.MoveResize = 70;
         Effect-wobblywindows = {
           Drag = 85;
           Stiffness = 10;
@@ -437,7 +437,7 @@
           translucencyEnabled = true;
           wobblywindowsEnabled = true;
         };
-        kwinrc.TabBox.LayoutName = "coverswitch";
+        TabBox.LayoutName = "coverswitch";
         "Tiling/0219274b-f9e5-4581-aba2-5a4a1180e59e/19e0b974-e471-4853-8ce5-4cd385617a49" = {
           padding = 4;
           tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";

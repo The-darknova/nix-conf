@@ -25,7 +25,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.danny = import ./modules/home/default.nix;
-          home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
+          home-manager.sharedModules = [ plasma-manager.homeModules.plasma-manager ];
           home-manager.extraSpecialArgs = { inherit inputs; };
         }
       ];
