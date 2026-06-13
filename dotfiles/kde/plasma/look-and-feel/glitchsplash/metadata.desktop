@@ -1,0 +1,14 @@
+[Desktop Entry]
+Comment=Glitch Splash Screen
+Name=Glitch Splash
+Type=Service
+X-KDE-ServiceTypes=Plasma/LookAndFeel
+X-KDE-ParentApp=
+X-KDE-PluginInfo-Author=Alexanderog
+X-KDE-PluginInfo-Email=
+X-KDE-PluginInfo-Name=pixelsplash
+X-KDE-PluginInfo-Version=1.1
+X-KDE-PluginInfo-Website=
+X-KDE-PluginInfo-Category=Look and Feel
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-EnabledByDefault=true

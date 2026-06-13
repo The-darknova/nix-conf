@@ -93,7 +93,7 @@
   users.users.danny = {
     isNormalUser = true;
     description = "Daniel ADJIWANOU";
-    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "qemu" "wireshark" "incus-admin" ]; # Add user to necessary groups
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "qemu" "wireshark" "incus-admin" "adbusers" ]; # Add user to necessary groups
   };
 
   # Allow unfree packages
@@ -101,6 +101,9 @@
 
   # Enable Steam for gaming
   programs.steam.enable = true;
+
+  # Enable Android Debug Bridge (ADB)
+  programs.adb.enable = true;
 
   # Base system packages
   environment.systemPackages = with pkgs; [

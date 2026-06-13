@@ -1,0 +1,12 @@
+{
+    "KPackageStructure": "Plasma/LookAndFeel",
+    "KPlugin": {
+        "Authors": [{"Name": "Alexanderog"}],
+        "Category": "Look and Feel",
+        "Description": "Pixel Splash Screen",
+        "Id": "glitchsplash",
+        "Name": "Glitch Splash",
+        "ServiceTypes": ["Plasma/LookAndFeel"],
+        "Version": "1.1"
+    }
+}

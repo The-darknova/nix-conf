@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./plasma-config.nix
+  ];
+
   home.username = "danny";
   home.homeDirectory = "/home/danny";
 
@@ -119,6 +123,11 @@
   # Neovim, Tmux, etc., can be added here
   # programs.neovim.enable = true;
   # programs.tmux.enable = true;
+
+  # KDE Custom Assets
+  home.file.".local/share/plasma".source = ../../dotfiles/kde/plasma;
+  home.file.".local/share/icons".source = ../../dotfiles/kde/icons;
+  home.file.".local/share/aurorae".source = ../../dotfiles/kde/aurorae;
 
   home.stateVersion = "24.05";
 }

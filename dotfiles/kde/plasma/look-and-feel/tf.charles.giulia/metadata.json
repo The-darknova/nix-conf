@@ -1,0 +1,23 @@
+{
+    "KPlugin": {
+        "Id": "tf.charles.giulia",
+        "Name": "Alfa Romeo Giulia",
+        "Description": "Un splashscreen Alfa Romeo Giulia",
+        "Version": "1.0",
+        "License": "MIT",
+        "Authors": [
+            {
+                "Name": "Thierry",
+                "Email": "kdesplash@thierry.charles.tf"
+            }
+        ],
+        "Category": "",
+        "ServiceTypes": [
+            "Plasma/LookAndFeel"
+        ],
+        "Website": "https://www.charles.tf"
+    },
+	"Keywords": "Splashscreen;Alfa-Romeo;Giulia",
+	"X-Plasma-MainScript": "defaults",
+	"KPackageStructure": "Plasma/LookAndFeel"
+}
