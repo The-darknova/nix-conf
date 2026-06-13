@@ -1,5 +1,5 @@
 {
-  description = "NixOS Configuration for Sysadmin / SOC Analyst";
+  description = "My NixOS Configuration for Sysadmin / SOC Analyst daily driver workstation";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
