@@ -99,7 +99,7 @@
   # Program configurations (dotfiles)
   programs.git = {
     enable = true;
-    extraConfig = {
+    settings = {
       user = {
         name = "The-darknova";
         email = "dannybloodfallen@gmail.com";
