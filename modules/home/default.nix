@@ -130,5 +130,5 @@
   home.file.".local/share/icons".source = ../../dotfiles/kde/icons;
   home.file.".local/share/aurorae".source = ../../dotfiles/kde/aurorae;
 
-  home.stateVersion = "24.05";
+  home.stateVersion = "26.05";
 }
