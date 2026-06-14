@@ -64,7 +64,6 @@
     tshark
     ngrep
     wireshark
-    binwalk
     volatility3
     sleuthkit
     yara
