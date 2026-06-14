@@ -137,6 +137,7 @@
     terraform
     opentofu
     docker-compose
+    inputs.darkly.packages.${pkgs.system}.default
   ];
 
   xdg.mimeApps = {

@@ -438,189 +438,51 @@
           wobblywindowsEnabled = true;
         };
         TabBox.LayoutName = "coverswitch";
-        "Tiling/0219274b-f9e5-4581-aba2-5a4a1180e59e/19e0b974-e471-4853-8ce5-4cd385617a49" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/0219274b-f9e5-4581-aba2-5a4a1180e59e/bd2d04e4-cc71-453c-9a25-93d7bf8a3253" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/0cbf0b95-1e49-4c6b-90a6-652eefabfd76/19e0b974-e471-4853-8ce5-4cd385617a49" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/0cbf0b95-1e49-4c6b-90a6-652eefabfd76/bd2d04e4-cc71-453c-9a25-93d7bf8a3253" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/1b500c9a-64d0-4797-ae8b-583fa04c61b7/0b26142a-083d-4e54-9af1-e840461c8dbd" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/1b500c9a-64d0-4797-ae8b-583fa04c61b7/19e0b974-e471-4853-8ce5-4cd385617a49" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/1b500c9a-64d0-4797-ae8b-583fa04c61b7/5a93c65d-4d3c-4db9-a632-2d508e331885" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/1b500c9a-64d0-4797-ae8b-583fa04c61b7/7892a641-8c7d-46b3-a908-c8aa99ae4386" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/1b500c9a-64d0-4797-ae8b-583fa04c61b7/857f0fe4-69bc-42df-8654-d8fce3fb3192" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/1b500c9a-64d0-4797-ae8b-583fa04c61b7/bd2d04e4-cc71-453c-9a25-93d7bf8a3253" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/1b500c9a-64d0-4797-ae8b-583fa04c61b7/c1ee67b5-7f3e-4f52-89cb-39477f060378" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/1b500c9a-64d0-4797-ae8b-583fa04c61b7/c24ef92e-a683-41dc-83bb-a6d722ce8724" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/1b500c9a-64d0-4797-ae8b-583fa04c61b7/cf0ff43c-6787-4b72-ac4c-b8341d2e88a7" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/1b500c9a-64d0-4797-ae8b-583fa04c61b7/f505dbeb-ee33-4127-bce7-cf1d4659cc1a" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/33fe9aca-d813-425b-a93a-f116bf568941/0b26142a-083d-4e54-9af1-e840461c8dbd" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/33fe9aca-d813-425b-a93a-f116bf568941/19e0b974-e471-4853-8ce5-4cd385617a49" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/33fe9aca-d813-425b-a93a-f116bf568941/5a93c65d-4d3c-4db9-a632-2d508e331885" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/33fe9aca-d813-425b-a93a-f116bf568941/7892a641-8c7d-46b3-a908-c8aa99ae4386" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/33fe9aca-d813-425b-a93a-f116bf568941/857f0fe4-69bc-42df-8654-d8fce3fb3192" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/33fe9aca-d813-425b-a93a-f116bf568941/bd2d04e4-cc71-453c-9a25-93d7bf8a3253" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/33fe9aca-d813-425b-a93a-f116bf568941/c1ee67b5-7f3e-4f52-89cb-39477f060378" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/33fe9aca-d813-425b-a93a-f116bf568941/c24ef92e-a683-41dc-83bb-a6d722ce8724" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/33fe9aca-d813-425b-a93a-f116bf568941/cf0ff43c-6787-4b72-ac4c-b8341d2e88a7" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/33fe9aca-d813-425b-a93a-f116bf568941/f505dbeb-ee33-4127-bce7-cf1d4659cc1a" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/72746c49-4d08-4b66-be71-c4bc8bec73c2/19e0b974-e471-4853-8ce5-4cd385617a49" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/72746c49-4d08-4b66-be71-c4bc8bec73c2/bd2d04e4-cc71-453c-9a25-93d7bf8a3253" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/8eca412d-cbf2-4f6f-af60-ade8a52e8c3c/0b26142a-083d-4e54-9af1-e840461c8dbd" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/8eca412d-cbf2-4f6f-af60-ade8a52e8c3c/19e0b974-e471-4853-8ce5-4cd385617a49" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/8eca412d-cbf2-4f6f-af60-ade8a52e8c3c/5a93c65d-4d3c-4db9-a632-2d508e331885" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/8eca412d-cbf2-4f6f-af60-ade8a52e8c3c/7892a641-8c7d-46b3-a908-c8aa99ae4386" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/8eca412d-cbf2-4f6f-af60-ade8a52e8c3c/857f0fe4-69bc-42df-8654-d8fce3fb3192" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/8eca412d-cbf2-4f6f-af60-ade8a52e8c3c/bd2d04e4-cc71-453c-9a25-93d7bf8a3253" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/8eca412d-cbf2-4f6f-af60-ade8a52e8c3c/c1ee67b5-7f3e-4f52-89cb-39477f060378" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/8eca412d-cbf2-4f6f-af60-ade8a52e8c3c/c24ef92e-a683-41dc-83bb-a6d722ce8724" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/8eca412d-cbf2-4f6f-af60-ade8a52e8c3c/cf0ff43c-6787-4b72-ac4c-b8341d2e88a7" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/8eca412d-cbf2-4f6f-af60-ade8a52e8c3c/f505dbeb-ee33-4127-bce7-cf1d4659cc1a" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/e106231a-93b0-4c14-b4fc-3d3a431fb8d1/0b26142a-083d-4e54-9af1-e840461c8dbd" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/e106231a-93b0-4c14-b4fc-3d3a431fb8d1/19e0b974-e471-4853-8ce5-4cd385617a49" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/e106231a-93b0-4c14-b4fc-3d3a431fb8d1/5a93c65d-4d3c-4db9-a632-2d508e331885" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/e106231a-93b0-4c14-b4fc-3d3a431fb8d1/7892a641-8c7d-46b3-a908-c8aa99ae4386" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/e106231a-93b0-4c14-b4fc-3d3a431fb8d1/857f0fe4-69bc-42df-8654-d8fce3fb3192" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/e106231a-93b0-4c14-b4fc-3d3a431fb8d1/bd2d04e4-cc71-453c-9a25-93d7bf8a3253" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/e106231a-93b0-4c14-b4fc-3d3a431fb8d1/c1ee67b5-7f3e-4f52-89cb-39477f060378" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/e106231a-93b0-4c14-b4fc-3d3a431fb8d1/c24ef92e-a683-41dc-83bb-a6d722ce8724" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/e106231a-93b0-4c14-b4fc-3d3a431fb8d1/cf0ff43c-6787-4b72-ac4c-b8341d2e88a7" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
-        "Tiling/e106231a-93b0-4c14-b4fc-3d3a431fb8d1/f505dbeb-ee33-4127-bce7-cf1d4659cc1a" = {
-          padding = 4;
-          tiles = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         };
         "org.kde.kdecoration2" = {
           ButtonsOnLeft = "XAI_FS";
