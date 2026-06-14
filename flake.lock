@@ -63,6 +63,26 @@
         "type": "github"
       }
     },
+    "darkly": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1780519775,
+        "narHash": "sha256-u12imjPk4ZhOen/PgnLiNPML+5NmuKO0Ja4wQKU/Y8E=",
+        "owner": "Bali10050",
+        "repo": "Darkly",
+        "rev": "11c27e2d98025f4d4c1598f07a185280b36f35f7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Bali10050",
+        "repo": "Darkly",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -185,6 +205,7 @@
       "inputs": {
         "caelestia-dots": "caelestia-dots",
         "caelestia-shell": "caelestia-shell",
+        "darkly": "darkly",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "plasma-manager": "plasma-manager",
