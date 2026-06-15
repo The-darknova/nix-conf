@@ -150,7 +150,7 @@
     starship
     papirus-icon-theme
 
-    inputs.darkly.packages.${pkgs.system}.default
+    inputs.darkly.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   xdg.mimeApps = {
