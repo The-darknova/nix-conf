@@ -1,0 +1,16 @@
+
+module my-vringworker 1.0;
+
+require {
+	type svirt_home_t;
+	type user_home_t;
+	type virtqemud_t;
+	class dir { add_name create remove_name };
+	class file { create rename setattr unlink write };
+}
+
+#============= virtqemud_t ==============
+allow virtqemud_t svirt_home_t:dir add_name;
+allow virtqemud_t svirt_home_t:file { create setattr write };
+allow virtqemud_t user_home_t:dir { add_name create remove_name };
+allow virtqemud_t user_home_t:file { create rename setattr unlink write };

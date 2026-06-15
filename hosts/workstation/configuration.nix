@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -29,6 +29,8 @@
   # Enable KDE Plasma 6
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+
+
 
   # Enable Hyprland
   programs.hyprland.enable = true;

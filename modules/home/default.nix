@@ -2,26 +2,14 @@
 
 {
   imports = [
-    ./plasma-config.nix
     inputs.zen-browser.homeModules.default
-    inputs.caelestia-shell.homeManagerModules.default
   ];
 
   home.username = "danny";
   home.homeDirectory = "/home/danny";
 
   home.packages = with pkgs; [
-    # Core dependencies for Caelestia Dots
-    quickshell
-    foot
-    starship
-    hyprpicker
-    wl-clipboard
-    cliphist
-    inotify-tools
-    wireplumber
-    trash-cli
-    fish
+
 
     # System Administration Toolkit
     btop
@@ -166,20 +154,7 @@
     BROWSER = "zen";
   };
 
-  # Caelestia dots configuration
-  xdg.configFile = {
-    "hypr".source = "${inputs.caelestia-dots}/hypr";
-    "foot".source = "${inputs.caelestia-dots}/foot";
-    "fish".source = "${inputs.caelestia-dots}/fish";
-    "fastfetch".source = "${inputs.caelestia-dots}/fastfetch";
-    "btop".source = "${inputs.caelestia-dots}/btop";
-    "uwsm".source = "${inputs.caelestia-dots}/uwsm";
-    "starship.toml".source = "${inputs.caelestia-dots}/starship.toml";
-  };
 
-  # Enable Caelestia shell
-  programs.caelestia.enable = true;
-  programs.caelestia.cli.enable = true;
 
   # Enable Zen Browser
   programs.zen-browser.enable = true;
@@ -189,10 +164,6 @@
     { "accounts": [ { "entitlement": { "canPlayMinecraft": true, "ownsMinecraft": true }, "msa-client-id": "", "type": "MSA" }, { "active": true, "profile": { "capes": [ ], "id": "0c79d88a112537a0a302f01afa6bc94a", "name": "YOUR-NICKNAME", "skin": { "id": "", "url": "", "variant": "" } }, "type": "Offline", "ygg": { "extra": { "clientToken": "8be89b1112474b5fb8f061699ff41bda", "userName": "YOUR-NICKNAME" }, "iat": 1738858981, "token": "0" } } ], "formatVersion": 3 }
   '';
 
-  # KDE Custom Assets
-  home.file.".local/share/plasma".source = ../../dotfiles/kde/plasma;
-  home.file.".local/share/icons".source = ../../dotfiles/kde/icons;
-  home.file.".local/share/aurorae".source = ../../dotfiles/kde/aurorae;
 
   # Shell aliases
   home.shellAliases = {
