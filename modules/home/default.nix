@@ -3,6 +3,7 @@
 {
   imports = [
     inputs.zen-browser.homeModules.default
+    inputs.caelestia-shell.homeManagerModules.default
   ];
 
   home.username = "danny";
@@ -136,6 +137,19 @@
     gparted
     traceroute
     powershell
+    # Caelestia shell/dots dependencies
+    hyprpicker
+    wl-clipboard
+    cliphist
+    inotify-tools
+    wireplumber
+    trash-cli
+    foot
+    fish
+    fastfetch
+    starship
+    papirus-icon-theme
+
     inputs.darkly.packages.${pkgs.system}.default
   ];
 
@@ -158,6 +172,28 @@
 
   # Enable Zen Browser
   programs.zen-browser.enable = true;
+
+  # Caelestia Shell configuration
+  programs.caelestia = {
+    enable = true;
+    systemd = {
+      enable = false;
+      target = "graphical-session.target";
+      environment = [];
+    };
+    settings = {
+      bar.status = {
+        showBattery = true;
+      };
+      paths.wallpaperDir = "~/Pictures/Wallpapers";
+    };
+    cli = {
+      enable = true;
+      settings = {
+        theme.enableGtk = false;
+      };
+    };
+  };
 
   # Prism Launcher offline accounts configuration
   home.file.".local/share/PrismLauncher/accounts.json".text = ''
@@ -239,6 +275,47 @@
   };
 
   programs.bat.enable = true;
+
+  home.activation = {
+    cloneCaelestiaDots = config.lib.dag.entryAfter ["writeBoundary"] ''
+      if [ ! -d "$HOME/.config/caelestia-dots" ]; then
+        $DRY_RUN_CMD ${pkgs.git}/bin/git clone https://github.com/caelestia-dots/caelestia.git "$HOME/.config/caelestia-dots"
+      fi
+    '';
+    setupZenChrome = config.lib.dag.entryAfter ["cloneCaelestiaDots"] ''
+      for chrome_dir in "$HOME"/.zen/*/chrome; do
+        if [ -d "$chrome_dir" ] && [ ! -L "$chrome_dir/userChrome.css" ]; then
+          $DRY_RUN_CMD ln -sf "$HOME/.config/caelestia-dots/zen/userChrome.css" "$chrome_dir/userChrome.css"
+        fi
+      done
+    '';
+  };
+
+  xdg.configFile = {
+    "hypr".source = config.lib.file.mkOutOfStoreSymlink "/home/danny/.config/caelestia-dots/hypr";
+    "foot".source = config.lib.file.mkOutOfStoreSymlink "/home/danny/.config/caelestia-dots/foot";
+    "fish".source = config.lib.file.mkOutOfStoreSymlink "/home/danny/.config/caelestia-dots/fish";
+    "fastfetch".source = config.lib.file.mkOutOfStoreSymlink "/home/danny/.config/caelestia-dots/fastfetch";
+    "btop".source = config.lib.file.mkOutOfStoreSymlink "/home/danny/.config/caelestia-dots/btop";
+    "uwsm".source = config.lib.file.mkOutOfStoreSymlink "/home/danny/.config/caelestia-dots/uwsm";
+    "starship.toml".source = config.lib.file.mkOutOfStoreSymlink "/home/danny/.config/caelestia-dots/starship.toml";
+    "spicetify".source = config.lib.file.mkOutOfStoreSymlink "/home/danny/.config/caelestia-dots/spicetify";
+    "micro".source = config.lib.file.mkOutOfStoreSymlink "/home/danny/.config/caelestia-dots/micro";
+    "Code/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "/home/danny/.config/caelestia-dots/vscode/settings.json";
+    "Code/User/keybindings.json".source = config.lib.file.mkOutOfStoreSymlink "/home/danny/.config/caelestia-dots/vscode/keybindings.json";
+    "code-flags.conf".source = config.lib.file.mkOutOfStoreSymlink "/home/danny/.config/caelestia-dots/vscode/flags.conf";
+  };
+
+  home.file.".mozilla/native-messaging-hosts/caelestiafox.json".text = ''
+    {
+        "name": "caelestiafox",
+        "description": "Native app for CaelestiaFox extension.",
+        "path": "/home/danny/.local/lib/caelestia/caelestiafox",
+        "type": "stdio",
+        "allowed_extensions": ["caelestiafox@caelestia.org"]
+    }
+  '';
+  home.file.".local/lib/caelestia/caelestiafox".source = config.lib.file.mkOutOfStoreSymlink "/home/danny/.config/caelestia-dots/zen/native_app/app.fish";
 
   # Let Home Manager install and manage itself
   programs.home-manager.enable = true;
