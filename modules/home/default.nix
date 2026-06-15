@@ -136,6 +136,19 @@
     terraform
     opentofu
     docker-compose
+    # QEMU / Virtualization Utilities
+    virt-viewer
+    spice
+    spice-gtk
+    spice-protocol
+    virtio-win
+    virtiofsd
+    libguestfs
+    guestfs-tools
+    # Extra System Tools
+    gparted
+    traceroute
+    powershell
     inputs.darkly.packages.${pkgs.system}.default
   ];
 
