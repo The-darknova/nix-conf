@@ -61,7 +61,6 @@
 
     # Defensive Security / SOC Operations Tools
     tcpdump
-    tshark
     ngrep
     wireshark
     volatility3
