@@ -25,6 +25,7 @@
   # Desktop Environments
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm.theme = "sddm-astronaut-theme";
 
   # Enable Hyprland
   programs.hyprland.enable = true;
@@ -117,6 +118,9 @@
 
   # Base system packages
   environment.systemPackages = with pkgs; [
+    (pkgs.sddm-astronaut.override {
+      embeddedTheme = "hyprland_kath";
+    })
     android-tools
     wget
     curl
