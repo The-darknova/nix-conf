@@ -149,8 +149,6 @@
     fastfetch
     starship
     papirus-icon-theme
-
-    inputs.darkly.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   xdg.mimeApps = {
@@ -275,6 +273,11 @@
   };
 
   programs.bat.enable = true;
+
+  services.kdeconnect = {
+    enable = true;
+    indicator = true;
+  };
 
   home.activation = {
     cloneCaelestiaDots = config.lib.dag.entryAfter ["writeBoundary"] ''

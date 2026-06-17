@@ -23,14 +23,8 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Desktop Environments
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable KDE Plasma 6
   services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
-
+  services.displayManager.sddm.wayland.enable = true;
 
   # Enable Hyprland
   programs.hyprland.enable = true;

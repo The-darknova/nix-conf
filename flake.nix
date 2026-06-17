@@ -19,10 +19,7 @@
     };
 
 
-    darkly = {
-      url = "github:Bali10050/Darkly";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
