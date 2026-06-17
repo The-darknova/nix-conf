@@ -1,5 +1,15 @@
 { config, pkgs, inputs, ... }:
 
+let
+  escrcpy = pkgs.appimageTools.wrapType2 {
+    pname = "escrcpy";
+    version = "2.11.1";
+    src = pkgs.fetchurl {
+      url = "https://github.com/viarotel-org/escrcpy/releases/download/v2.11.1/Escrcpy-2.11.1-linux-x86_64.AppImage";
+      sha256 = "1xz0fkggmp1n4aypxxqps33xsd59m6g9glxmcg39klc6vng8ipr4";
+    };
+  };
+in
 {
   imports = [
     inputs.zen-browser.homeModules.default
@@ -10,6 +20,9 @@
   home.homeDirectory = "/home/danny";
 
   home.packages = with pkgs; [
+    scrcpy
+    escrcpy
+    
     openconnect
     networkmanagerapplet
     polkit_gnome
