@@ -11,8 +11,9 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "darknova";
-  networking.wireless.enable = true;
+  # Use NetworkManager instead of wpa_supplicant for Wi-Fi and VPNs
   networking.networkmanager.enable = true;
+  networking.networkmanager.plugins = with pkgs; [ networkmanager-openconnect ];
 
   # VPNs
   services.tailscale.enable = true;
@@ -26,6 +27,10 @@
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.displayManager.sddm.theme = "sddm-astronaut-theme";
+
+  # Enable Gnome Keyring for secret management (wifi passwords, etc)
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.sddm.enableGnomeKeyring = true;
 
   # Enable Hyprland
   programs.hyprland.enable = true;

@@ -10,7 +10,9 @@
   home.homeDirectory = "/home/danny";
 
   home.packages = with pkgs; [
-
+    openconnect
+    networkmanagerapplet
+    polkit_gnome
 
     # System Administration Toolkit
     btop
@@ -277,6 +279,26 @@
   services.kdeconnect = {
     enable = true;
     indicator = true;
+  };
+
+  services.network-manager-applet.enable = true;
+
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    Unit = {
+      Description = "polkit-gnome-authentication-agent-1";
+      Wants = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+    Service = {
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
+    };
   };
 
   home.activation = {
