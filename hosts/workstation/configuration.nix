@@ -24,9 +24,14 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Desktop Environments
+  services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
   services.displayManager.sddm.theme = "sddm-astronaut-theme";
+  services.displayManager.sddm.extraPackages = with pkgs.kdePackages; [
+    qtsvg
+    qtmultimedia
+    qtvirtualkeyboard
+  ];
 
   # Enable Gnome Keyring for secret management (wifi passwords, etc)
   services.gnome.gnome-keyring.enable = true;
