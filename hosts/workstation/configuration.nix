@@ -25,6 +25,7 @@
 
   # Desktop Environments
   services.xserver.enable = true;
+  services.desktopManager.plasma6.enable = true;
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.theme = "sddm-astronaut-theme";
   services.displayManager.sddm.extraPackages = with pkgs.kdePackages; [
