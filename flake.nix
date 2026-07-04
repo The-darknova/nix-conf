@@ -10,7 +10,10 @@
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
     };
 
     caelestia-shell = {
@@ -28,13 +31,14 @@
       modules = [
         ./hosts/workstation/configuration.nix
         home-manager.nixosModules.home-manager
-        {
+        ({
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "backup";
           home-manager.users.danny = import ./modules/home/default.nix;
 
           home-manager.extraSpecialArgs = { inherit inputs; };
-        }
+        })
       ];
     };
   };

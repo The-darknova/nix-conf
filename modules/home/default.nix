@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 let
   escrcpy = pkgs.appimageTools.wrapType2 {
@@ -12,7 +12,7 @@ let
 in
 {
   imports = [
-    inputs.zen-browser.homeModules.default
+    inputs.zen-browser.homeModules.beta
     inputs.caelestia-shell.homeManagerModules.default
   ];
 
@@ -120,25 +120,34 @@ in
     zathura
     thunderbird
 
-    # Graphics & Design Tools
+    # Edit, Graphics & Design Tools
     inkscape
     gimp
     krita
     imagemagick
+    blender
+    synfigstudio
+    davinci-resolve
 
     # Miscellaneous Utilities
     winboat
     spotify
     yt-dlp
     diffutils
+    thunar
     gh
     gemini-cli
+
+    # DevOps
     kubectl
     kubernetes-helm
     k9s
+    minikube
+    argocd
     terraform
     opentofu
     docker-compose
+
     # QEMU / Virtualization Utilities
     virt-viewer
     spice
@@ -164,21 +173,46 @@ in
     fastfetch
     starship
     papirus-icon-theme
+
+    # Other
+    ani-cli
   ];
 
-  xdg.mimeApps = {
+  # Default theme config
+  gtk = {
     enable = true;
-    defaultApplications = {
-      "text/html" = "zen.desktop";
-      "x-scheme-handler/http" = "zen.desktop";
-      "x-scheme-handler/https" = "zen.desktop";
-      "x-scheme-handler/about" = "zen.desktop";
-      "x-scheme-handler/unknown" = "zen.desktop";
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+    gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
+    gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
+  };
+  qt = {
+    enable = true;
+    platformTheme.name = "adwaita";
+    style.name = "adwaita-dark";
+  };
+  # Standardizes XDG Desktop Portal settings for dark mode
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
     };
   };
 
+#   xdg.mimeApps = {
+#     enable = true;
+#     defaultApplications = {
+#       "text/html" = "zen-beta.desktop";
+#       "x-scheme-handler/http" = "zen-beta.desktop";
+#       "x-scheme-handler/https" = "zen-beta.desktop";
+#       "x-scheme-handler/about" = "zen-beta.desktop";
+#       "x-scheme-handler/unknown" = "zen-beta.desktop";
+#     };
+#   };
+
   home.sessionVariables = {
-    BROWSER = "zen";
+    # BROWSER = "zen-beta";
     # Qt / KDE compatibility in Wayland (Hyprland)
     QT_QPA_PLATFORM = "wayland;xcb";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
@@ -188,8 +222,13 @@ in
 
 
   # Enable Zen Browser
-  programs.zen-browser.enable = true;
+  programs.zen-browser = {
+    enable = true;
+    setAsDefaultBrowser = true;
+  };
 
+  # Enable wlogout
+    programs.wlogout.enable = true;
   # Caelestia Shell configuration
   programs.caelestia = {
     enable = true;
@@ -203,6 +242,12 @@ in
         showBattery = true;
       };
       paths.wallpaperDir = "~/Pictures/Wallpapers";
+      session.commands = {
+        logout = ["loginctl" "terminate-user" ""];
+        #shutdown = ["systemctl" "poweroff"];
+        #hibernate = ["systemctl" "hibernate"];
+        #reboot = ["systemctl" "reboot"];
+      };
     };
     cli = {
       enable = true;
@@ -320,14 +365,16 @@ in
 
   home.activation = {
     cloneCaelestiaDots = config.lib.dag.entryAfter ["writeBoundary"] ''
+      export PATH="${pkgs.git}/bin:$PATH"
       if [ ! -d "$HOME/.config/caelestia-dots" ]; then
-        $DRY_RUN_CMD ${pkgs.git}/bin/git clone https://github.com/caelestia-dots/caelestia.git "$HOME/.config/caelestia-dots"
+        run ${pkgs.git}/bin/git clone https://github.com/caelestia-dots/caelestia.git "$HOME/.config/caelestia-dots"
       fi
     '';
     setupZenChrome = config.lib.dag.entryAfter ["cloneCaelestiaDots"] ''
+      shopt -s nullglob
       for chrome_dir in "$HOME"/.zen/*/chrome; do
         if [ -d "$chrome_dir" ] && [ ! -L "$chrome_dir/userChrome.css" ]; then
-          $DRY_RUN_CMD ln -sf "$HOME/.config/caelestia-dots/zen/userChrome.css" "$chrome_dir/userChrome.css"
+          run ln -sf "$HOME/.config/caelestia-dots/zen/userChrome.css" "$chrome_dir/userChrome.css"
         fi
       done
     '';

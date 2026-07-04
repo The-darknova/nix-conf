@@ -9,6 +9,7 @@
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.initrd.luks.devices."luks-8975b560-92f4-4180-b5cd-d1e03ad2b58b".device = "/dev/disk/by-uuid/8975b560-92f4-4180-b5cd-d1e03ad2b58b";
 
   networking.hostName = "darknova";
   # Use NetworkManager instead of wpa_supplicant for Wi-Fi and VPNs
@@ -26,13 +27,23 @@
   # Desktop Environments
   services.xserver.enable = true;
   services.desktopManager.plasma6.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.theme = "sddm-astronaut-theme";
-  services.displayManager.sddm.extraPackages = with pkgs.kdePackages; [
-    qtsvg
-    qtmultimedia
-    qtvirtualkeyboard
-  ];
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    theme = "sddm-astronaut-theme";
+    extraPackages = with pkgs.kdePackages; [
+      qtsvg
+      qtmultimedia
+      qtvirtualkeyboard
+    ];
+  };
+#   services.displayManager.sddm.enable = true;
+#   services.displayManager.sddm.theme = "sddm-astronaut-theme";
+#   services.displayManager.sddm.extraPackages = with pkgs.kdePackages; [
+#     qtsvg
+#     qtmultimedia
+#     qtvirtualkeyboard
+#   ];
 
   # Enable Gnome Keyring for secret management (wifi passwords, etc)
   services.gnome.gnome-keyring.enable = true;
@@ -114,10 +125,14 @@
     };
   };
 
+  # Enable zsh globally
+  programs.zsh.enable = true;
+
   # Define a user account
   users.users.danny = {
     isNormalUser = true;
     description = "Daniel ADJIWANOU";
+    shell = pkgs.zsh;
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "qemu" "wireshark" "incus-admin" "adbusers" ]; # Add user to necessary groups
   };
 
@@ -138,6 +153,11 @@
     git
     vim
     nano
+    zsh
+    zsh-completions
+    zsh-powerlevel10k
+    zsh-syntax-highlighting
+    nwg-displays
   ];
 
   # Enable flakes
