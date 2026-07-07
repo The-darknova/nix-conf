@@ -44,6 +44,7 @@ in
     fzf
     tree
     bat
+    micro
 
     # Networking
     iperf3

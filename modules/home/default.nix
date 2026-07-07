@@ -34,15 +34,24 @@
   '';
   home.file.".local/lib/caelestia/caelestiafox".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/caelestia-dots/zen/native_app/app.fish";
 
+  home.file = {
+    ".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/caelestia-dots/hypr";
+    ".config/foot".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/caelestia-dots/foot";
+    ".config/fastfetch".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/caelestia-dots/fastfetch";
+    ".config/btop".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/caelestia-dots/btop";
+    ".config/starship.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/caelestia-dots/starship.toml";
+    ".config/uwsm".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/caelestia-dots/uwsm";
+    ".config/Thunar".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/caelestia-dots/thunar";
+    ".config/micro".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/caelestia-dots/micro";
+    ".config/spicetify".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/caelestia-dots/spicetify";
+    ".config/Code/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/caelestia-dots/vscode/settings.json";
+    ".config/Code/User/keybindings.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/caelestia-dots/vscode/keybindings.json";
+  };
+
   home.activation = {
     installCaelestiaDots = config.lib.dag.entryAfter ["writeBoundary"] ''
-      if [ ! -d "${config.home.homeDirectory}/.config/hypr" ]; then
-        # Check if caelestia is available in the newly built profile
-        if command -v caelestia >/dev/null 2>&1; then
-          run caelestia install
-        else
-          echo "caelestia CLI not found, skipping automatic install."
-        fi
+      if [ ! -d "${config.home.homeDirectory}/.config/caelestia-dots" ]; then
+        run git clone https://github.com/caelestia-dots/caelestia "${config.home.homeDirectory}/.config/caelestia-dots"
       fi
     '';
   };
