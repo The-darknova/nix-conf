@@ -1,0 +1,109 @@
+{ config, pkgs, ... }:
+
+{
+  # Shell aliases
+  home.shellAliases = {
+    cat = "bat";
+    ls = "eza";
+    ll = "eza -l";
+  };
+
+  # Program configurations (dotfiles)
+  programs.git = {
+    enable = true;
+    settings = {
+      user = {
+        name = "The-darknova";
+        email = "dannybloodfallen@gmail.com";
+      };
+    };
+  };
+
+  # Zsh configuration
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "git" "urltools" "bgnotify" "aliases" "ansible" "colorize"
+        "docker" "docker-compose" "golang" "grc" "helm" "kubectl"
+        "minikube" "pip" "podman" "ssh" "sudo" "vagrant" "copyfile"
+        "argocd" "opentofu" "terraform"
+      ];
+    };
+
+    initContent = ''
+      # TODO: Configure Jovial theme
+      # Add any custom aliases or environment variables here
+      alias ll="ls -l"
+      alias cat="bat"
+      alias ls="eza"
+      
+      # SOC and Sysadmin quick aliases
+      alias ports="sudo lsof -i -P -n | grep LISTEN"
+      alias myip="curl -s ifconfig.me"
+      alias pcap-capture="sudo tcpdump -i any -w capture.pcap"
+
+      # NVM setup
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+      # Bind keys
+      bindkey  "^[[H"   beginning-of-line
+      bindkey  "^[[F"   end-of-line
+      bindkey  "^[[3~"  delete-char
+
+      # Local bin path
+      export PATH="${config.home.homeDirectory}/.local/bin:$PATH"
+    '';
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.bat.enable = true;
+
+  # Enable wlogout
+  programs.wlogout.enable = true;
+
+  # Caelestia Shell configuration
+  programs.caelestia = {
+    enable = true;
+    systemd = {
+      enable = false;
+      target = "graphical-session.target";
+      environment = [];
+    };
+    settings = {
+      bar.status = {
+        showBattery = true;
+      };
+      paths.wallpaperDir = "~/Pictures/Wallpapers";
+      session.commands = {
+        logout = ["loginctl" "terminate-user" ""];
+        #shutdown = ["systemctl" "poweroff"];
+        #hibernate = ["systemctl" "hibernate"];
+        #reboot = ["systemctl" "reboot"];
+      };
+    };
+    cli = {
+      enable = true;
+      settings = {
+        theme.enableGtk = false;
+      };
+    };
+  };
+}

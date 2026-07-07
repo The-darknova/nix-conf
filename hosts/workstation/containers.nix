@@ -17,11 +17,11 @@
     wantedBy = [ "multi-user.target" ];
     after = [ "docker.service" ];
     requires = [ "docker.service" ];
-    path = [ pkgs.docker ];
-    script = ''
-      docker network inspect docker-net-br0 >/dev/null 2>&1 || \
-      docker network create --driver bridge --subnet 172.200.0.0/16 docker-net-br0
-    '';
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${pkgs.docker}/bin/docker network create --driver bridge --subnet 172.200.0.0/16 docker-net-br0 || true";
+    };
   };
 
   virtualisation.oci-containers = {
