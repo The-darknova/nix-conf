@@ -75,6 +75,7 @@ in
       alias ports="sudo lsof -i -P -n | grep LISTEN"
       alias myip="curl -s ifconfig.me"
       alias pcap-capture="sudo tcpdump -i any -w capture.pcap"
+      alias pcap-analyze="termshark -r"
 
       # NVM setup
       export NVM_DIR="$HOME/.nvm"
@@ -102,6 +103,17 @@ in
   };
 
   programs.bat.enable = true;
+
+  programs.atuin = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
 
   # Enable wlogout
   programs.wlogout.enable = true;

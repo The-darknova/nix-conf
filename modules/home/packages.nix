@@ -24,8 +24,8 @@ in
     htop
     glances
     sysstat
-    tmux
-    screen
+    zellij
+    termshark
     lolcat
     jq
     yq-go
@@ -105,6 +105,7 @@ in
     openssh
     sshfs
     ansible
+    remmina
 
     # Office & Productivity
     onlyoffice-desktopeditors
