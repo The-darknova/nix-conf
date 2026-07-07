@@ -1,5 +1,13 @@
 { config, pkgs, ... }:
 
+let
+  jovialTheme = pkgs.fetchFromGitHub {
+    owner = "zthxxx";
+    repo = "jovial";
+    rev = "426fe1fb612e85817ec23440a64f2732b8d34b3f";
+    hash = "sha256-VvF1alXCLatkSDJGImxFkijiVwtOGYgH1gXlqLfgWcs=";
+  };
+in
 {
   # Shell aliases
   home.shellAliases = {
@@ -37,8 +45,27 @@
       ];
     };
 
+    plugins = [
+      {
+        name = "zsh-autocomplete";
+        src = pkgs.fetchFromGitHub {
+          owner = "marlonrichert";
+          repo = "zsh-autocomplete";
+          rev = "20f6c34f20270084b21211428afb6d2534aae8e9";
+          hash = "sha256-M8gWOg/9ohkG2NiLVSGERINcmHJCfoES5IG2GBllrRo=";
+        };
+      }
+      {
+        name = "jovial";
+        src = jovialTheme;
+        file = "jovial.plugin.zsh";
+      }
+    ];
+
     initContent = ''
-      # TODO: Configure Jovial theme
+      # Source Jovial theme
+      source ${jovialTheme}/jovial.zsh-theme
+
       # Add any custom aliases or environment variables here
       alias ll="ls -l"
       alias cat="bat"
