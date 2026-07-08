@@ -23,6 +23,16 @@ let
       exit 1
     fi
   '';
+
+  notion-webapp = pkgs.makeDesktopItem {
+    name = "notion";
+    desktopName = "Notion";
+    exec = "${pkgs.chromium}/bin/chromium --app=https://www.notion.so --enable-features=UseOzonePlatform --ozone-platform=wayland";
+    icon = "notion-app";
+    type = "Application";
+    categories = [ "Office" ];
+    terminal = false;
+  };
 in
 {
   home.packages = with pkgs; [
@@ -147,7 +157,8 @@ in
     gh
     libsecret
     ddcutil
-    notion-app
+    notion-webapp
+    chromium
     gemini-cli
 
     # DevOps
