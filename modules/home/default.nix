@@ -52,7 +52,7 @@
     installCaelestiaDots = config.lib.dag.entryAfter ["writeBoundary"] ''
       # 1. Clone dotfiles if missing
       if [ ! -d "${config.home.homeDirectory}/.config/caelestia-dots" ]; then
-        run ${pkgs.git}/bin/git clone https://github.com/caelestia-dots/caelestia "${config.home.homeDirectory}/.config/caelestia-dots" || true
+        run ${pkgs.git}/bin/git clone https://github.com/caelestia-dots/caelestia "${config.home.homeDirectory}/.config/caelestia-dots" > /tmp/caelestia-git-clone.log 2>&1 || true
       fi
 
       # 2. Global Scheme Init
