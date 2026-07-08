@@ -20,7 +20,7 @@
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
-      ExecStart = "${pkgs.docker}/bin/docker network create --driver bridge --subnet 172.200.0.0/16 docker-net-br0 || true";
+      ExecStart = "-${pkgs.docker}/bin/docker network create --driver bridge --subnet 172.200.0.0/16 docker-net-br0";
     };
   };
 
