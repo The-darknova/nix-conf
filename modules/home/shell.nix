@@ -127,18 +127,7 @@ in
       target = "graphical-session.target";
       environment = [];
     };
-    settings = {
-      bar.status = {
-        showBattery = true;
-      };
-      paths.wallpaperDir = "~/Pictures/Wallpapers";
-      session.commands = {
-        logout = ["loginctl" "terminate-user" ""];
-        #shutdown = ["systemctl" "poweroff"];
-        #hibernate = ["systemctl" "hibernate"];
-        #reboot = ["systemctl" "reboot"];
-      };
-    };
+
     cli = {
       enable = true;
       settings = {
