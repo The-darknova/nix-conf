@@ -130,6 +130,7 @@ in
     diffutils
     thunar
     gh
+    libsecret
     gemini-cli
 
     # DevOps
