@@ -18,7 +18,6 @@
   # Enable Gnome Keyring for secret management (wifi passwords, etc)
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
-  programs.seahorse.enable = true;
 
   # Enable Hyprland
   programs.hyprland.enable = true;
