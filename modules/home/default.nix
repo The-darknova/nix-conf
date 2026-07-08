@@ -80,7 +80,6 @@
       if [ -d "$HYPR_DIR" ]; then
         # Create external-brightness.lua
         cat << 'EOF' > "$HYPR_DIR/external-brightness.lua"
-local hl = require("hyprland")
 hl.bind("SHIFT + XF86MonBrightnessUp", hl.dsp.exec_cmd("external-brightness up"), { locked = true, repeating = true })
 hl.bind("SHIFT + XF86MonBrightnessDown", hl.dsp.exec_cmd("external-brightness down"), { locked = true, repeating = true })
 EOF
