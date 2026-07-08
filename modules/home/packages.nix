@@ -147,6 +147,7 @@ in
     gh
     libsecret
     ddcutil
+    notion-app-enhanced
     gemini-cli
 
     # DevOps
