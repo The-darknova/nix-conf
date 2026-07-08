@@ -50,9 +50,29 @@
 
   home.activation = {
     installCaelestiaDots = config.lib.dag.entryAfter ["writeBoundary"] ''
+      # 1. Clone dotfiles if missing
       if [ ! -d "${config.home.homeDirectory}/.config/caelestia-dots" ]; then
-        run git clone https://github.com/caelestia-dots/caelestia "${config.home.homeDirectory}/.config/caelestia-dots"
+        run ${pkgs.git}/bin/git clone https://github.com/caelestia-dots/caelestia "${config.home.homeDirectory}/.config/caelestia-dots"
       fi
+
+      # 2. Global Scheme Init
+      if [ ! -f "${config.home.homeDirectory}/.local/state/caelestia/scheme.json" ] && command -v caelestia >/dev/null 2>&1; then
+        run caelestia scheme set -n caelestia || true
+      fi
+
+      # 3. VSCode Extension
+      if command -v code >/dev/null 2>&1; then
+        run code --install-extension ${config.home.homeDirectory}/.config/caelestia-dots/vscode/caelestia-vscode-integration/caelestia-vscode-integration-*.vsix --force || true
+      fi
+
+      # 4. Spicetify Configuration
+      if command -v spicetify >/dev/null 2>&1; then
+        run spicetify config current_theme caelestia color_scheme caelestia custom_apps marketplace || true
+        run spicetify apply || true
+      fi
+
+      # 5. XDG User Dirs
+      run ${pkgs.xdg-user-dirs}/bin/xdg-user-dirs-update || true
     '';
   };
 

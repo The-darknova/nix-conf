@@ -37,6 +37,7 @@ in
 
     oh-my-zsh = {
       enable = true;
+      theme = "";
       plugins = [
         "git" "urltools" "bgnotify" "aliases" "ansible" "colorize"
         "docker" "docker-compose" "golang" "grc" "helm" "kubectl"
