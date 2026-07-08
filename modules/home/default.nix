@@ -74,6 +74,23 @@
       # 5. XDG User Dirs
       run ${pkgs.xdg-user-dirs}/bin/xdg-user-dirs-update || true
     '';
+
+    injectExternalBrightness = config.lib.dag.entryAfter ["installCaelestiaDots"] ''
+      HYPR_DIR="${config.home.homeDirectory}/.config/caelestia-dots/hypr/hyprland"
+      if [ -d "$HYPR_DIR" ]; then
+        # Create external-brightness.lua
+        cat << 'EOF' > "$HYPR_DIR/external-brightness.lua"
+local hl = require("hyprland")
+hl.bind("SHIFT + XF86MonBrightnessUp", hl.dsp.exec_cmd("external-brightness up"), { locked = true, repeating = true })
+hl.bind("SHIFT + XF86MonBrightnessDown", hl.dsp.exec_cmd("external-brightness down"), { locked = true, repeating = true })
+EOF
+
+        # Inject require into keybinds.lua if it doesn't exist
+        if ! grep -q "require(\"hyprland.external-brightness\")" "$HYPR_DIR/keybinds.lua"; then
+          echo 'require("hyprland.external-brightness")' >> "$HYPR_DIR/keybinds.lua"
+        fi
+      fi
+    '';
   };
 
   # Let Home Manager install and manage itself

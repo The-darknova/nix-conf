@@ -9,9 +9,24 @@ let
       sha256 = "1xz0fkggmp1n4aypxxqps33xsd59m6g9glxmcg39klc6vng8ipr4";
     };
   };
+
+  externalBrightnessScript = pkgs.writeShellScriptBin "external-brightness" ''
+    #!/bin/sh
+    # This script controls external monitor brightness asynchronously to prevent blocking the compositor
+
+    if [ "$1" = "up" ]; then
+      ${pkgs.ddcutil}/bin/ddcutil setvcp 10 + 5 & disown
+    elif [ "$1" = "down" ]; then
+      ${pkgs.ddcutil}/bin/ddcutil setvcp 10 - 5 & disown
+    else
+      echo "Usage: external-brightness [up|down]"
+      exit 1
+    fi
+  '';
 in
 {
   home.packages = with pkgs; [
+    externalBrightnessScript
     scrcpy
     escrcpy
     
@@ -131,6 +146,7 @@ in
     thunar
     gh
     libsecret
+    ddcutil
     gemini-cli
 
     # DevOps

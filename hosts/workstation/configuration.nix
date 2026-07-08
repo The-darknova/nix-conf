@@ -27,8 +27,11 @@
     isNormalUser = true;
     description = "Daniel ADJIWANOU";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "qemu" "wireshark" "incus-admin" "adbusers" ]; # Add user to necessary groups
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "qemu" "wireshark" "incus-admin" "adbusers" "i2c" "video" ]; # Add user to necessary groups
   };
+
+  # Hardware configuration
+  hardware.i2c.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
