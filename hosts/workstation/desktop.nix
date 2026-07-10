@@ -22,6 +22,22 @@
   # Enable Hyprland
   programs.hyprland.enable = true;
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      kdePackages.xdg-desktop-portal-kde
+      xdg-desktop-portal-gtk
+    ];
+    config = {
+      common = {
+        default = [ "kde" "gtk" ];
+      };
+      hyprland = {
+        default = [ "hyprland" "kde" "gtk" ];
+      };
+    };
+  };
+
   # Configure keymap in X11
   services.xserver.xkb.layout = "us";
   services.xserver.xkb.variant = "";

@@ -13,8 +13,8 @@
   };
   qt = {
     enable = true;
-    platformTheme.name = "adwaita";
-    style.name = "adwaita-dark";
+    platformTheme.name = "kde";
+    style.name = "breeze";
   };
   
   # Standardizes XDG Desktop Portal settings for dark mode
@@ -41,7 +41,18 @@
     QT_QPA_PLATFORM = "wayland;xcb";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    XDG_MENU_PREFIX = "plasma-";
   };
+
+  xdg.configFile."swappy/config".text = ''
+    [Default]
+    save_dir=''${HOME}/Pictures/Screenshot
+    save_filename_format=swappy-%Y%m%d-%H%M%S.png
+    show_panel=false
+    line_size=5
+    text_size=20
+    text_font=sans-serif
+  '';
 
   services.kdeconnect = {
     enable = true;
