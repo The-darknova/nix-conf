@@ -75,7 +75,7 @@
       run ${pkgs.xdg-user-dirs}/bin/xdg-user-dirs-update || true
     '';
 
-    injectExternalBrightness = config.lib.dag.entryAfter ["installCaelestiaDots"] ''
+    injectHyprlandExtras = config.lib.dag.entryAfter ["installCaelestiaDots"] ''
       HYPR_DIR="${config.home.homeDirectory}/.config/caelestia-dots/hypr/hyprland"
       if [ -d "$HYPR_DIR" ]; then
         # Create external-brightness.lua
@@ -87,6 +87,33 @@ EOF
         # Inject require into keybinds.lua if it doesn't exist
         if ! grep -q "require(\"hyprland.external-brightness\")" "$HYPR_DIR/keybinds.lua"; then
           echo 'require("hyprland.external-brightness")' >> "$HYPR_DIR/keybinds.lua"
+        fi
+
+        # Create external-autostart.lua for nm-applet
+        cat << 'EOF' > "$HYPR_DIR/external-autostart.lua"
+hl.on("hyprland.start", function()
+    hl.exec_cmd("nm-applet --indicator")
+end)
+EOF
+
+        # Inject require into execs.lua if it doesn't exist
+        if ! grep -q "require(\"hyprland.external-autostart\")" "$HYPR_DIR/execs.lua"; then
+          echo 'require("hyprland.external-autostart")' >> "$HYPR_DIR/execs.lua"
+        fi
+
+        # Create external-input.lua for keyboard layouts
+        cat << 'EOF' > "$HYPR_DIR/external-input.lua"
+hl.config({
+    input = {
+        kb_layout = "us,fr",
+        kb_options = "grp:win_space_toggle",
+    }
+})
+EOF
+
+        # Inject require into input.lua if it doesn't exist
+        if ! grep -q "require(\"hyprland.external-input\")" "$HYPR_DIR/input.lua"; then
+          echo 'require("hyprland.external-input")' >> "$HYPR_DIR/input.lua"
         fi
       fi
     '';

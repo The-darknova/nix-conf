@@ -13,11 +13,12 @@ let
   externalBrightnessScript = pkgs.writeShellScriptBin "external-brightness" ''
     #!/bin/sh
     # This script controls external monitor brightness asynchronously to prevent blocking the compositor
+    # Uses flock to drop concurrent requests, preventing I2C bus locks during key repeats.
 
     if [ "$1" = "up" ]; then
-      ${pkgs.ddcutil}/bin/ddcutil setvcp 10 + 5 & disown
+      ( flock -n 9 || exit 0; ${pkgs.ddcutil}/bin/ddcutil setvcp 10 + 5 ) 9>/tmp/external-brightness.lock & disown
     elif [ "$1" = "down" ]; then
-      ${pkgs.ddcutil}/bin/ddcutil setvcp 10 - 5 & disown
+      ( flock -n 9 || exit 0; ${pkgs.ddcutil}/bin/ddcutil setvcp 10 - 5 ) 9>/tmp/external-brightness.lock & disown
     else
       echo "Usage: external-brightness [up|down]"
       exit 1

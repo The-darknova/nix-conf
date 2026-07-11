@@ -39,8 +39,9 @@
   };
 
   # Configure keymap in X11
-  services.xserver.xkb.layout = "us";
+  services.xserver.xkb.layout = "us,fr";
   services.xserver.xkb.variant = "";
+  services.xserver.xkb.options = "grp:win_space_toggle";
 
   # Enable CUPS support
   services.printing.enable = true;
