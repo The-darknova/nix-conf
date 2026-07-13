@@ -161,6 +161,7 @@ in
     notion-webapp
     chromium
     gemini-cli
+    mkcert
 
     # DevOps
     kubectl

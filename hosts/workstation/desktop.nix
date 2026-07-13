@@ -19,6 +19,14 @@
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
 
+  # Enable dconf for GTK themes to apply properly
+  programs.dconf.enable = true;
+
+  # Fix Dolphin / KDE apps crash by setting XDG_MENU_PREFIX globally
+  environment.variables = {
+    XDG_MENU_PREFIX = "plasma-";
+  };
+
   # Enable Hyprland
   programs.hyprland.enable = true;
 

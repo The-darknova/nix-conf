@@ -14,6 +14,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.luks.devices."luks-8975b560-92f4-4180-b5cd-d1e03ad2b58b".device = "/dev/disk/by-uuid/8975b560-92f4-4180-b5cd-d1e03ad2b58b";
 
+  # Fix AMD/Wayland suspend and wake crashes
+  boot.kernelParams = [ "mem_sleep_default=deep" "amdgpu.sg_display=0" ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   time.timeZone = "Africa/Lome"; # Update based on your actual timezone
 
   # Select internationalisation properties.
@@ -35,6 +39,9 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # Trust mkcert local CA if generated
+  security.pki.certificateFiles = if (builtins.pathExists "/home/danny/.local/share/mkcert/rootCA.pem") then [ "/home/danny/.local/share/mkcert/rootCA.pem" ] else [];
 
   # Enable Steam for gaming
   programs.steam.enable = true;

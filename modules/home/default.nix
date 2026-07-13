@@ -49,7 +49,15 @@
   };
 
   home.activation = {
-    installCaelestiaDots = config.lib.dag.entryAfter ["writeBoundary"] ''
+    installMkcert = config.lib.dag.entryAfter ["writeBoundary"] ''
+      export CAROOT="${config.home.homeDirectory}/.local/share/mkcert"
+      if [ ! -f "$CAROOT/rootCA.pem" ]; then
+        mkdir -p "$CAROOT"
+        run ${pkgs.mkcert}/bin/mkcert -install || true
+      fi
+    '';
+
+    installCaelestiaDots = config.lib.dag.entryAfter ["installMkcert"] ''
       # 1. Clone dotfiles if missing
       if [ ! -d "${config.home.homeDirectory}/.config/caelestia-dots" ]; then
         run ${pkgs.git}/bin/git clone https://github.com/caelestia-dots/caelestia "${config.home.homeDirectory}/.config/caelestia-dots" > /tmp/caelestia-git-clone.log 2>&1 || true
