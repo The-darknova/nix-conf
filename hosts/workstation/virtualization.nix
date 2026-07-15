@@ -3,7 +3,13 @@
 {
   # Virtualization & Containerization
   virtualisation.docker.enable = true;
-  virtualisation.libvirtd.enable = true;
+  environment.systemPackages = with pkgs; [ virtiofsd ];
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      vhostUserPackages = [ pkgs.virtiofsd ];
+    };
+  };
   virtualisation.spiceUSBRedirection.enable = true;
   programs.virt-manager.enable = true;
   

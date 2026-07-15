@@ -16,6 +16,6 @@
     allowedTCPPorts = [ ]; # Strict default for laptops
     allowedUDPPorts = [ ];
     # Trust container/VM networks so internal routing isn't blocked
-    trustedInterfaces = [ "docker-net-br0" "incusbr0" "virbr0" ];
+    trustedInterfaces = [ "docker-net-br0" "incusbr0" "virbr0" "virbr1" "virbr2" "virbr3" "tailscale0" ];
   };
 }
