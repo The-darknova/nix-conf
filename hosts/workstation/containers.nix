@@ -3,6 +3,7 @@
 {
   networking.hosts = {
     "127.0.0.1" = [
+      "darknova.local"
       "portainer.darknova.local"
       "homer.darknova.local"
       "it-tools.darknova.local"
@@ -11,6 +12,12 @@
       "npm.darknova.local"
     ];
   };
+
+  system.activationScripts.fixComposePermissions = ''
+    mkdir -p /opt/compose
+    chown -R root:docker /opt/compose
+    chmod -R g+rwX /opt/compose
+  '';
 
   systemd.services.docker-network-br0 = {
     description = "Create custom Docker Network docker-net-br0";
@@ -50,8 +57,19 @@
         ];
       };
 
+      portainer-agent = {
+        image = "portainer/agent:latest";
+        extraOptions = [ "--network=docker-net-br0" ];
+        volumes = [
+          "/var/run/docker.sock:/var/run/docker.sock"
+          "/var/lib/docker/volumes:/var/lib/docker/volumes"
+          "/:/host"
+        ];
+      };
+
       homer = {
         image = "b4bz/homer:latest";
+        user = "1000:1000";
         extraOptions = [ "--network=docker-net-br0" ];
         volumes = [
           "/opt/compose/homer/assets:/www/assets"
@@ -69,7 +87,7 @@
       };
 
       reverse-shell-generator = {
-        image = "0dayctf/reverse-shell-generator:latest";
+        image = "reverse-shell-generator:local";
         extraOptions = [ "--network=docker-net-br0" ];
       };
     };
@@ -82,6 +100,9 @@
   systemd.services."docker-portainer".after = [ "docker-network-br0.service" ];
   systemd.services."docker-portainer".requires = [ "docker-network-br0.service" ];
 
+  systemd.services."docker-portainer-agent".after = [ "docker-network-br0.service" ];
+  systemd.services."docker-portainer-agent".requires = [ "docker-network-br0.service" ];
+
   systemd.services."docker-homer".after = [ "docker-network-br0.service" ];
   systemd.services."docker-homer".requires = [ "docker-network-br0.service" ];
 
@@ -91,6 +112,17 @@
   systemd.services."docker-cyberchef".after = [ "docker-network-br0.service" ];
   systemd.services."docker-cyberchef".requires = [ "docker-network-br0.service" ];
 
-  systemd.services."docker-reverse-shell-generator".after = [ "docker-network-br0.service" ];
-  systemd.services."docker-reverse-shell-generator".requires = [ "docker-network-br0.service" ];
+  systemd.services."docker-reverse-shell-generator" = {
+    after = [ "docker-network-br0.service" ];
+    requires = [ "docker-network-br0.service" ];
+    path = [ pkgs.git pkgs.docker ];
+    preStart = ''
+      if ! docker image inspect reverse-shell-generator:local >/dev/null 2>&1; then
+        workdir=$(mktemp -d)
+        git clone https://github.com/0dayCTF/reverse-shell-generator.git $workdir
+        docker build -t reverse-shell-generator:local $workdir
+        rm -rf $workdir
+      fi
+    '';
+  };
 }
