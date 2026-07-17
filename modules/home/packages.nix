@@ -105,6 +105,8 @@ in
     firefox
     google-chrome
     vesktop
+    telegram-desktop
+    signal-desktop
 
     # Antigravity Development
     antigravity
@@ -160,7 +162,6 @@ in
     ddcutil
     notion-webapp
     chromium
-    gemini-cli
     mkcert
 
     # DevOps

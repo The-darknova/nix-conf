@@ -16,7 +16,7 @@
 
   # Fix AMD/Wayland suspend and wake crashes
   boot.kernelParams = [ "mem_sleep_default=deep" "amdgpu.sg_display=0" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages;
 
   time.timeZone = "Africa/Lome"; # Update based on your actual timezone
 
@@ -31,11 +31,14 @@
     isNormalUser = true;
     description = "Daniel ADJIWANOU";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "qemu" "wireshark" "incus-admin" "adbusers" "i2c" "video" ]; # Add user to necessary groups
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "qemu" "wireshark" "incus-admin" "i2c" "video" ]; # Add user to necessary groups
   };
 
   # Hardware configuration
   hardware.i2c.enable = true;
+
+  # Enable programs for user groups (wireshark)
+  programs.wireshark.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

@@ -34,7 +34,7 @@
         ({
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "backup";
+          home-manager.backupCommand = "mv \"$1\" \"$1.backup-$(date +%Y%m%d%H%M%S)\"";
           home-manager.users.danny = import ./modules/home/default.nix;
 
           home-manager.extraSpecialArgs = { inherit inputs; };

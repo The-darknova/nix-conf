@@ -37,6 +37,10 @@
 
   home.sessionVariables = {
     # BROWSER = "zen-beta";
+    # Enable Wayland support in Firefox / Zen Browser
+    MOZ_ENABLE_WAYLAND = "1";
+    # Enable Wayland support in Electron / Chromium apps
+    NIXOS_OZONE_WL = "1";
     # Qt / KDE compatibility in Wayland (Hyprland)
     QT_QPA_PLATFORM = "wayland;xcb";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
