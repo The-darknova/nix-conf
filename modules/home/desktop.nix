@@ -8,8 +8,16 @@
       name = "Adwaita-dark";
       package = pkgs.gnome-themes-extra;
     };
-    gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
-    gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+      gtk-recent-files-max-age = 0;
+      gtk-recent-files-limit = 0;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+      gtk-recent-files-max-age = 0;
+      gtk-recent-files-limit = 0;
+    };
   };
   qt = {
     enable = true;
@@ -21,6 +29,9 @@
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
+    };
+    "org/gnome/desktop/privacy" = {
+      remember-recent-files = false;
     };
   };
 
