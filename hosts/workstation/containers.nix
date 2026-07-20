@@ -10,6 +10,7 @@ let
     "docker-homer"
     "docker-it-tools"
     "docker-cyberchef"
+    "docker-fossflow"
   ];
 
   # Common network dependency attrs, applied to each container in the list above.
@@ -32,6 +33,7 @@ in
       "cyberchef.darknova.local"
       "reverse-shell.darknova.local"
       "npm.darknova.local"
+      "fossflow.darknova.local"
     ];
   };
 
@@ -102,6 +104,14 @@ in
       cyberchef = {
         image = "ghcr.io/gchq/cyberchef:latest";
         extraOptions = [ "--network=docker-net-br0" ];
+      };
+
+      fossflow = {
+        image = "stnsmith/fossflow:latest";
+        extraOptions = [ "--network=docker-net-br0" ];
+        volumes = [
+          "/opt/compose/fossflow/diagrams:/data/diagrams"
+        ];
       };
 
       reverse-shell-generator = {
