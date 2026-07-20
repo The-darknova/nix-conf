@@ -113,6 +113,7 @@ in
 
     # Programming Languages & Toolchains
     python3
+    nodejs
     go
     cargo
     rustc
