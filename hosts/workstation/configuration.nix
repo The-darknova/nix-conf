@@ -18,6 +18,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # LUKS swap entry
+  boot.initrd.luks.devices."luks-8975b560-92f4-4180-b5cd-d1e03ad2b58b".device = "/dev/disk/by-uuid/8975b560-92f4-4180-b5cd-d1e03ad2b58b";
+
+
   # Use the latest stable kernel for best hardware support and bug fixes.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
