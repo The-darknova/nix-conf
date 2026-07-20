@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   jovialTheme = pkgs.fetchFromGitHub {
@@ -63,34 +63,54 @@ in
       }
     ];
 
-    initContent = ''
-      # Source Jovial theme
-      source ${jovialTheme}/jovial.zsh-theme
+    initContent = lib.mkMerge [
+      (lib.mkBefore ''
+        # Save original TERM to avoid Zsh autocomplete crashes on missing terminfo keys (like TERM=dumb)
+        _original_TERM="$TERM"
+        if [[ "$TERM" == "dumb" || -z "$TERM" ]]; then
+          export TERM="xterm-256color"
+        fi
+      '')
+      ''
+        # Source Jovial theme
+        source ${jovialTheme}/jovial.zsh-theme
 
-      # Add any custom aliases or environment variables here
-      alias ll="ls -l"
-      alias cat="bat"
-      alias ls="eza"
-      
-      # SOC and Sysadmin quick aliases
-      alias ports="sudo lsof -i -P -n | grep LISTEN"
-      alias myip="curl -s ifconfig.me"
-      alias pcap-capture="sudo tcpdump -i any -w capture.pcap"
-      alias pcap-analyze="termshark -r"
+        # Add any custom aliases or environment variables here
+        alias ll="ls -l"
+        alias cat="bat"
+        alias ls="eza"
+        
+        # SOC and Sysadmin quick aliases
+        alias ports="sudo lsof -i -P -n | grep LISTEN"
+        alias myip="curl -s ifconfig.me"
+        alias pcap-capture="sudo tcpdump -i any -w capture.pcap"
+        alias pcap-analyze="termshark -r"
 
-      # NVM setup
-      export NVM_DIR="$HOME/.nvm"
-      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+        # NVM setup
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-      # Bind keys
-      bindkey  "^[[H"   beginning-of-line
-      bindkey  "^[[F"   end-of-line
-      bindkey  "^[[3~"  delete-char
+        # Bind keys
+        bindkey  "^[[H"   beginning-of-line
+        bindkey  "^[[F"   end-of-line
+        bindkey  "^[[3~"  delete-char
 
-      # Local bin path
-      export PATH="${config.home.homeDirectory}/.local/bin:$PATH"
-    '';
+        # Local bin path
+        export PATH="${config.home.homeDirectory}/.local/bin:$PATH"
+
+        # Export NIX_LD_LIBRARY_PATH to LD_LIBRARY_PATH to fix Python pre-compiled wheels (e.g. numpy, pandas) in venvs
+        if [ -n "$NIX_LD_LIBRARY_PATH" ]; then
+          export LD_LIBRARY_PATH="$NIX_LD_LIBRARY_PATH:$LD_LIBRARY_PATH"
+        fi
+
+        # Restore TERM if it was overridden
+        if [[ -n "$_original_TERM" ]]; then
+          export TERM="$_original_TERM"
+          unset _original_TERM
+        fi
+      ''
+    ];
   };
 
   programs.zoxide = {

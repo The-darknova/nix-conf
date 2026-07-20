@@ -15,7 +15,6 @@
   boot.initrd.luks.devices."luks-8975b560-92f4-4180-b5cd-d1e03ad2b58b".device = "/dev/disk/by-uuid/8975b560-92f4-4180-b5cd-d1e03ad2b58b";
 
   # Fix AMD/Wayland suspend and wake crashes
-  boot.kernelParams = [ "mem_sleep_default=deep" "amdgpu.sg_display=0" ];
   boot.kernelPackages = pkgs.linuxPackages;
 
   time.timeZone = "Africa/Lome"; # Update based on your actual timezone
@@ -25,6 +24,15 @@
 
   # Enable zsh globally
   programs.zsh.enable = true;
+
+  # Enable nix-ld to run unpatched binaries (e.g., pip/numpy wheels)
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc.lib
+    zlib
+    glib
+    libx11
+  ];
 
   # Define a user account
   users.users.danny = {
