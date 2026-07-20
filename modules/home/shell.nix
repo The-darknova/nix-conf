@@ -48,13 +48,12 @@ in
 
     plugins = [
       {
-        name = "zsh-autocomplete";
-        src = pkgs.fetchFromGitHub {
-          owner = "marlonrichert";
-          repo = "zsh-autocomplete";
-          rev = "20f6c34f20270084b21211428afb6d2534aae8e9";
-          hash = "sha256-M8gWOg/9ohkG2NiLVSGERINcmHJCfoES5IG2GBllrRo=";
-        };
+        # fzf-tab replaces the default zsh tab completion widget with an fzf-powered
+        # interactive dropdown. It is stable, actively maintained, and compatible with
+        # oh-my-zsh's compinit — unlike zsh-autocomplete which caused repeated SIGSEGV
+        # crashes (confirmed in coredump logs from 2026-07-18).
+        name = "fzf-tab";
+        src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
       }
       {
         name = "jovial";
@@ -114,6 +113,17 @@ in
   };
 
   programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  # fzf: fast fuzzy finder.
+  # - Ctrl+R : fuzzy history search (replaces the basic reverse-i-search)
+  # - Ctrl+T : fuzzy file picker inserted at the cursor
+  # - Alt+C  : fuzzy directory jump
+  # Combined with fzf-tab (above), Tab completion also uses fzf for interactive
+  # selection — providing the inline/dropdown completion that zsh-autocomplete did.
+  programs.fzf = {
     enable = true;
     enableZshIntegration = true;
   };

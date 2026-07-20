@@ -1,9 +1,17 @@
 { config, pkgs, ... }:
 
 {
-  # Desktop Environments
+  # ---------------------------------------------------------------------------
+  # Display & Desktop Environments
+  # ---------------------------------------------------------------------------
+
+  # X server is required even in Wayland-only setups (SDDM depends on libX11).
   services.xserver.enable = true;
+
+  # KDE Plasma 6 as the primary desktop environment.
   services.desktopManager.plasma6.enable = true;
+
+  # SDDM display manager with Wayland backend.
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
@@ -15,21 +23,16 @@
     ];
   };
 
-  # Enable Gnome Keyring for secret management (wifi passwords, etc)
-  services.gnome.gnome-keyring.enable = true;
-  security.pam.services.sddm.enableGnomeKeyring = true;
+  # ---------------------------------------------------------------------------
+  # Wayland / XDG Portals
+  # ---------------------------------------------------------------------------
 
-  # Enable dconf for GTK themes to apply properly
-  programs.dconf.enable = true;
-
-  # Fix Dolphin / KDE apps crash by setting XDG_MENU_PREFIX globally
-  environment.variables = {
-    XDG_MENU_PREFIX = "plasma-";
-  };
-
-  # Enable Hyprland
+  # Enable Hyprland as an alternative compositor.
   programs.hyprland.enable = true;
 
+  # XDG desktop portal configuration.
+  # Each session type has its own explicit default to avoid launching multiple
+  # portal backends simultaneously (a known crash cause on Hyprland).
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
@@ -37,32 +40,90 @@
       xdg-desktop-portal-gtk
     ];
     config = {
-      common = {
-        default = [ "kde" "gtk" ];
-      };
+      # Default for all other sessions (KDE Plasma): use the KDE portal.
+      common.default = [ "kde" ];
+      # Hyprland sessions: use the Hyprland portal exclusively.
+      # xdg-desktop-portal-hyprland is added automatically by programs.hyprland.
       hyprland = {
-        default = [ "hyprland" "kde" "gtk" ];
+        default = [ "hyprland" ];
+        # Delegate file pickers to KDE portal for a better native look.
+        "org.freedesktop.impl.portal.FileChooser" = [ "kde" ];
       };
     };
   };
 
-  # Configure keymap in X11
+  # ---------------------------------------------------------------------------
+  # Keyring & Authentication
+  # ---------------------------------------------------------------------------
+
+  # GNOME Keyring for storing WiFi passwords, SSH keys, etc.
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.sddm.enableGnomeKeyring = true;
+
+  # dconf is required for GTK themes and portal settings to apply correctly.
+  programs.dconf.enable = true;
+
+  # Fix Dolphin / KDE apps crash by setting XDG_MENU_PREFIX globally.
+  environment.variables.XDG_MENU_PREFIX = "plasma-";
+
+  # ---------------------------------------------------------------------------
+  # Keyboard
+  # ---------------------------------------------------------------------------
+
   services.xserver.xkb.layout = "us,fr";
   services.xserver.xkb.variant = "";
   services.xserver.xkb.options = "grp:win_space_toggle";
 
-  # Enable CUPS support
-  services.printing.enable = true;
-  # Enable Bluetooth support
-  hardware.bluetooth.enable = true;
-  
-  # Enable sound support with pipewire
-  services.pulseaudio.enable = false; # Disable PulseAudio if previously enabled
-  security.rtkit.enable = true; # Real-time scheduling for audio
+  # ---------------------------------------------------------------------------
+  # Audio — PipeWire
+  # ---------------------------------------------------------------------------
+
+  # Disable PulseAudio; PipeWire provides its own PA-compatible socket.
+  services.pulseaudio.enable = false;
+
+  # Real-time scheduling priority for audio threads.
+  security.rtkit.enable = true;
+
   services.pipewire = {
     enable = true;
-    alsa.enable = true; # ALSA support for PipeWire
-    alsa.support32Bit = true; # 32-bit support for ALSA
-    jack.enable = true; # JACK support for low-latency audio
+    alsa.enable = true;        # ALSA compatibility layer
+    alsa.support32Bit = true;  # Required for 32-bit apps (Wine, Steam)
+    jack.enable = true;        # JACK compatibility for low-latency audio
+    pulse.enable = true;       # PulseAudio compatibility socket — required by
+                               # most apps (Spotify, Vesktop, browsers, games)
+  };
+
+  # ---------------------------------------------------------------------------
+  # Bluetooth
+  # ---------------------------------------------------------------------------
+
+  hardware.bluetooth.enable = true;
+  # Ensure the Bluetooth adapter is powered on automatically after boot or
+  # wake from sleep.
+  hardware.bluetooth.powerOnBoot = true;
+
+  # ---------------------------------------------------------------------------
+  # Printing
+  # ---------------------------------------------------------------------------
+
+  services.printing = {
+    enable = true;
+    # Drivers for common printer brands:
+    #   hplip        — HP printers (OfficeJet, LaserJet, DeskJet, etc.)
+    #   gutenprint   — Canon, Ricoh, Epson, and hundreds of other models
+    #   gutenprintBin — Binary-only Gutenprint drivers for some models
+    drivers = with pkgs; [
+      hplip
+      gutenprint
+      gutenprintBin
+    ];
+  };
+
+  # Avahi (mDNS/DNS-SD) enables automatic discovery of network printers
+  # without needing to manually enter IP addresses.
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;   # Allow applications to resolve .local hostnames
+    openFirewall = true;
   };
 }

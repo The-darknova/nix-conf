@@ -16,6 +16,9 @@
   fileSystems."/" =
     { device = "/dev/mapper/luks-fe3ff266-f363-4765-9acc-98736ae44adc";
       fsType = "btrfs";
+      # compress=zstd: reduces NVMe I/O and page-cache pressure (lower OOM risk).
+      # noatime: eliminates write-on-read overhead for all file access.
+      options = [ "compress=zstd" "noatime" ];
     };
 
   boot.initrd.luks.devices."luks-fe3ff266-f363-4765-9acc-98736ae44adc".device = "/dev/disk/by-uuid/fe3ff266-f363-4765-9acc-98736ae44adc";
@@ -23,13 +26,14 @@
   fileSystems."/home" =
     { device = "/dev/mapper/luks-fe3ff266-f363-4765-9acc-98736ae44adc";
       fsType = "btrfs";
-      options = [ "subvol=home" ];
+      options = [ "subvol=home" "compress=zstd" "noatime" ];
     };
 
   fileSystems."/nix" =
     { device = "/dev/mapper/luks-fe3ff266-f363-4765-9acc-98736ae44adc";
       fsType = "btrfs";
-      options = [ "subvol=nix" ];
+      # noatime is especially impactful on /nix — the store has millions of reads.
+      options = [ "subvol=nix" "compress=zstd" "noatime" ];
     };
 
   fileSystems."/boot" =

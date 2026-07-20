@@ -43,7 +43,6 @@ in
     
     openconnect
     networkmanagerapplet
-    polkit_gnome
 
     # System Administration Toolkit
     btop

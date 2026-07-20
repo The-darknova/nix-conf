@@ -36,16 +36,15 @@
   };
 
   home.sessionVariables = {
-    # BROWSER = "zen-beta";
     # Enable Wayland support in Firefox / Zen Browser
     MOZ_ENABLE_WAYLAND = "1";
-    # Enable Wayland support in Electron / Chromium apps
+    # Enable Wayland support in Electron / Chromium apps (VS Code, Obsidian, etc.)
     NIXOS_OZONE_WL = "1";
-    # Qt / KDE compatibility in Wayland (Hyprland)
+    # Qt / KDE Wayland compatibility
     QT_QPA_PLATFORM = "wayland;xcb";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-    XDG_MENU_PREFIX = "plasma-";
+    # Note: XDG_MENU_PREFIX is set at the system level in hosts/workstation/desktop.nix
   };
 
   xdg.configFile."swappy/config".text = ''
@@ -64,6 +63,11 @@
   };
 
   services.network-manager-applet.enable = true;
+
+  # polkit authentication agent — needed by apps that require privilege escalation
+  # (e.g. gparted, virt-manager, system settings). Kept here alongside the
+  # package so the unit and its binary are always in sync.
+  home.packages = [ pkgs.polkit_gnome ];
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     Unit = {
