@@ -10,13 +10,9 @@
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
-      gtk-recent-files-max-age = 0;
-      gtk-recent-files-limit = 0;
     };
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
-      gtk-recent-files-max-age = 0;
-      gtk-recent-files-limit = 0;
     };
   };
   qt = {

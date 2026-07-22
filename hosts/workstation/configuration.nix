@@ -40,16 +40,16 @@
     memoryPercent = 50; # 16GB zram from 32GB RAM
   };
 
-  # Kernel memory management tuning:
-  #   vm.swappiness = 10    — Only use swap under strong memory pressure.
-  #                           Default (60) swaps too eagerly, causing GPU command
-  #                           timeouts when the compositor's pages are swapped out.
+  # Kernel memory management tuning optimized for zram:
+  #   vm.swappiness = 100   — Eagerly compress anonymous memory into zram to
+  #                           prevent dropping executable pages (which causes segfaults).
+  #   vm.page-cluster = 0   — Disable read-ahead for swap (essential for zram).
   #   vm.vfs_cache_pressure = 50 — Retain more dentries/inodes in RAM.
-  #                           Reduces I/O latency for Nix store access and builds.
   #   vm.dirty_ratio = 10   — Flush dirty pages to disk earlier (good for NVMe SSD).
   #   vm.dirty_background_ratio = 5 — Start background writeback earlier.
   boot.kernel.sysctl = {
-    "vm.swappiness"             = 10;
+    "vm.swappiness"             = 100;
+    "vm.page-cluster"           = 0;
     "vm.vfs_cache_pressure"     = 50;
     "vm.dirty_ratio"            = 10;
     "vm.dirty_background_ratio" = 5;
