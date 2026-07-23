@@ -200,6 +200,12 @@ in
     starship
     papirus-icon-theme
 
+    # Screen Recording & Screenshots
+    gpu-screen-recorder
+    grim
+    slurp
+    swappy
+
     # Other
     ani-cli
   ];

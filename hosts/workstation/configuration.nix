@@ -109,6 +109,11 @@
   # Disk / USB mount daemon used by Thunar, Dolphin, and other file managers.
   services.udisks2.enable = true;
 
+  # GNOME Virtual File System (gvfs) provides the volume monitor backend for GTK.
+  # Without this, GTK apps (browsers, editors) can segfault when udisks2 broadcasts
+  # a new unencrypted or mounted volume over D-Bus.
+  services.gvfs.enable = true;
+
   # ---------------------------------------------------------------------------
   # Security
   # ---------------------------------------------------------------------------
