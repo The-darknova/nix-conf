@@ -149,6 +149,12 @@
     zsh-powerlevel10k
     zsh-syntax-highlighting
     nwg-displays
+
+    # Screen Recording & Screenshots (Global to ensure PATH in Hyprland)
+    gpu-screen-recorder
+    grim
+    slurp
+    swappy
   ];
 
   # ---------------------------------------------------------------------------
