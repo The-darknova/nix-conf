@@ -114,6 +114,9 @@
   # a new unencrypted or mounted volume over D-Bus.
   services.gvfs.enable = true;
 
+  # Enable the GPU screen recorder module to get the required setcap wrappers
+  programs.gpu-screen-recorder.enable = true;
+
   # ---------------------------------------------------------------------------
   # Security
   # ---------------------------------------------------------------------------
@@ -148,6 +151,7 @@
     zsh-completions
     zsh-powerlevel10k
     zsh-syntax-highlighting
+
     nwg-displays
 
     # Screen Recording & Screenshots (Global to ensure PATH in Hyprland)

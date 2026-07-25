@@ -152,6 +152,8 @@ in
     davinci-resolve
 
     # Miscellaneous Utilities
+    vlc
+    mpv
     winboat
     spotify
     yt-dlp
