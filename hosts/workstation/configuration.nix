@@ -122,6 +122,8 @@
   # ---------------------------------------------------------------------------
 
   # Trust mkcert local CA if it has been generated.
+  security.pam.services.quickshell = {};
+
   security.pki.certificateFiles =
     if (builtins.pathExists "/home/danny/.local/share/mkcert/rootCA.pem")
     then [ "/home/danny/.local/share/mkcert/rootCA.pem" ]
