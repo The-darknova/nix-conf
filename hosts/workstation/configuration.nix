@@ -117,6 +117,21 @@
   # Enable the GPU screen recorder module to get the required setcap wrappers
   programs.gpu-screen-recorder.enable = true;
 
+  # Enable nix-ld so standard pre-compiled dynamically linked Linux binaries
+  # (like those installed by pip or npm) can find standard libraries.
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc.lib
+    zlib
+    glib
+    xorg.libX11
+    xorg.libXext
+    xorg.libXrender
+    libGL
+    fontconfig
+    freetype
+  ];
+
   # ---------------------------------------------------------------------------
   # Security
   # ---------------------------------------------------------------------------
