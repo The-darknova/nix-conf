@@ -40,8 +40,6 @@
   };
 
   home.sessionVariables = {
-    # Force GTK file pickers and apps into dark mode
-    GTK_THEME = "Adwaita:dark";
     # Enable Wayland support in Firefox / Zen Browser
     MOZ_ENABLE_WAYLAND = "1";
     # Enable Wayland support in Electron / Chromium apps (VS Code, Obsidian, etc.)
