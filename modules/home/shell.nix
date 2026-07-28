@@ -79,6 +79,10 @@ in
         alias cat="bat"
         alias ls="eza"
         
+        # Safely wrap python to use nix-ld libraries for pre-compiled pip wheels
+        alias python="LD_LIBRARY_PATH=\$NIX_LD_LIBRARY_PATH python"
+        alias python3="LD_LIBRARY_PATH=\$NIX_LD_LIBRARY_PATH python3"
+        
         # SOC and Sysadmin quick aliases
         alias ports="sudo lsof -i -P -n | grep LISTEN"
         alias myip="curl -s ifconfig.me"
@@ -98,10 +102,7 @@ in
         # Local bin path
         export PATH="${config.home.homeDirectory}/.local/bin:$PATH"
 
-        # Export NIX_LD_LIBRARY_PATH to LD_LIBRARY_PATH to fix Python pre-compiled wheels (e.g. numpy, pandas) in venvs
-        if [ -n "$NIX_LD_LIBRARY_PATH" ]; then
-          export LD_LIBRARY_PATH="$NIX_LD_LIBRARY_PATH:$LD_LIBRARY_PATH"
-        fi
+
 
         # Restore TERM if it was overridden
         if [[ -n "$_original_TERM" ]]; then
