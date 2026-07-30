@@ -110,6 +110,7 @@ in
     # Antigravity Development
     antigravity-ide
     antigravity-cli
+    google-cloud-sdk
     
 
     # Programming Languages & Toolchains
