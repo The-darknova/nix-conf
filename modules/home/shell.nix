@@ -127,6 +127,7 @@ in
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
+    historyWidget.command = "";
   };
 
   programs.eza = {

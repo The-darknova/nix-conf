@@ -124,9 +124,9 @@
     stdenv.cc.cc.lib
     zlib
     glib
-    xorg.libX11
-    xorg.libXext
-    xorg.libXrender
+    libX11
+    libXext
+    libXrender
     libGL
     fontconfig
     freetype
@@ -177,6 +177,12 @@
     slurp
     swappy
   ];
+
+  # Enable insecure electron for own build notion
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-40.10.5"
+  ];
+
 
   # ---------------------------------------------------------------------------
   # Nix Settings
