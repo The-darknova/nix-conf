@@ -15,11 +15,11 @@
       gtk-application-prefer-dark-theme = 1;
     };
   };
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk3";
-    style.name = "adwaita-dark";
-  };
+  # qt = {
+  #   enable = true;
+  #   platformTheme.name = "gtk3";
+  #   style.name = "adwaita-dark";
+  # };
   
   # Standardizes XDG Desktop Portal settings for dark mode
   dconf.settings = {
@@ -45,9 +45,9 @@
     # Enable Wayland support in Electron / Chromium apps (VS Code, Obsidian, etc.)
     NIXOS_OZONE_WL = "1";
     # Qt / KDE Wayland compatibility
-    QT_QPA_PLATFORM = "wayland;xcb";
-    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    # QT_QPA_PLATFORM = "wayland;xcb";
+    # QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    # QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     # Note: XDG_MENU_PREFIX is set at the system level in hosts/workstation/desktop.nix
   };
 
