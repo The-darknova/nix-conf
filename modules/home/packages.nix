@@ -108,8 +108,9 @@ in
     signal-desktop
 
     # Antigravity Development
-    antigravity
+    antigravity-ide
     antigravity-cli
+    
 
     # Programming Languages & Toolchains
     python3
@@ -167,7 +168,7 @@ in
     mkcert
 
     # DevOps
-    kubectl
+    (pkgs.lib.hiPrio kubectl)
     kubernetes-helm
     k9s
     minikube

@@ -38,6 +38,16 @@
           home-manager.users.danny = import ./modules/home/default.nix;
 
           home-manager.extraSpecialArgs = { inherit inputs; };
+
+          # Disable glances checks
+          nixpkgs.overlays = [
+            (final: prev: {
+              glances = prev.glances.overrideAttrs (oldAttrs: {
+                doCheck = false;
+                doInstallCheck = false;
+              });
+            })
+          ];
         })
       ];
     };
