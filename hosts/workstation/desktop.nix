@@ -102,6 +102,15 @@
   # wake from sleep.
   hardware.bluetooth.powerOnBoot = true;
 
+  # Fix for Xbox Wireless Controller BLE connect/disconnect loop (HOG unlikely error)
+  hardware.bluetooth.settings = {
+    General = {
+      Privacy = "device";
+      JustWorksRepairing = "always";
+      FastConnectable = "true";
+    };
+  };
+
   # Enable Xbox Wireless Controller support (fixes Bluetooth connect loop)
   hardware.xpadneo.enable = true;
 
