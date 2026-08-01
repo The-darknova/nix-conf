@@ -102,6 +102,9 @@
   # wake from sleep.
   hardware.bluetooth.powerOnBoot = true;
 
+  # Enable Xbox Wireless Controller support (fixes Bluetooth connect loop)
+  hardware.xpadneo.enable = true;
+
   # ---------------------------------------------------------------------------
   # Printing
   # ---------------------------------------------------------------------------
