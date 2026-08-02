@@ -46,6 +46,9 @@
                 doCheck = false;
                 doInstallCheck = false;
               });
+              scap-security-guide = prev.scap-security-guide.overrideAttrs (oldAttrs: {
+                nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [ prev.python3Packages.setuptools ];
+              });
             })
           ];
         })
