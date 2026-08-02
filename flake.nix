@@ -46,11 +46,6 @@
                 doCheck = false;
                 doInstallCheck = false;
               });
-              scap-security-guide = prev.scap-security-guide.overrideAttrs (oldAttrs: {
-                preConfigure = (oldAttrs.preConfigure or "") + ''
-                  export PYTHONPATH="${prev.python3Packages.setuptools}/${prev.python3.sitePackages}:$PYTHONPATH"
-                '';
-              });
             })
           ];
         })
