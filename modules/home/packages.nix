@@ -90,6 +90,7 @@ in
     yara
     cyberchef
     zeek
+    scap-security-guide
     appimage-run
     awscli2
     gojq
