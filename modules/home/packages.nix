@@ -214,5 +214,6 @@ in
     ani-cli
     fpm
     openssl
+    winbox
   ];
 }
