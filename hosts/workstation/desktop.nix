@@ -10,6 +10,9 @@
 
   # KDE Plasma 6 as the primary desktop environment.
   services.desktopManager.plasma6.enable = true;
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    kde-gtk-config
+  ];
 
   # SDDM display manager with Wayland backend.
   services.displayManager.sddm = {

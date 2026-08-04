@@ -27,6 +27,7 @@
           type = "bridge";
           config = {
             "ipv4.address" = "11.0.200.1/24";
+            "ipv4.nat" = "true";
             "ipv6.address" = "none";
           };
         }

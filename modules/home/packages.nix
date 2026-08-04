@@ -212,5 +212,7 @@ in
 
     # Other
     ani-cli
+    fpm
+    openssl
   ];
 }
