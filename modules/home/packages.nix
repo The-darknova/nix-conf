@@ -101,6 +101,7 @@ in
 
     # Gaming & Browsers
     prismlauncher
+    heroic
     firefox
     google-chrome
     vesktop
@@ -159,6 +160,7 @@ in
     winboat
     spotify
     yt-dlp
+    qbittorrent
     diffutils
     thunar
     gh
