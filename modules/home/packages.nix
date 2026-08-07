@@ -144,6 +144,7 @@ in
     keepassxc
     zathura
     thunderbird
+    pdfarranger
 
     # Edit, Graphics & Design Tools
     inkscape
