@@ -116,6 +116,7 @@ in
 
     # Programming Languages & Toolchains
     python3
+    poetry
     nodejs
     go
     cargo
