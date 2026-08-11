@@ -132,6 +132,7 @@ in
     kdePackages.kate
     ollama
     lmstudio
+    bruno
 
     # Remote Management
     openssh
