@@ -16,6 +16,10 @@
   programs.zen-browser = {
     enable = true;
     setAsDefaultBrowser = true;
+    profiles.default = {
+      isDefault = true;
+      sine.enable = true;
+    };
   };
 
   # Prism Launcher offline accounts configuration
