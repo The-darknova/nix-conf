@@ -16,8 +16,9 @@
   programs.zen-browser = {
     enable = true;
     setAsDefaultBrowser = true;
-    profiles.default = {
+    profiles."Default Profile" = {
       isDefault = true;
+      path = "4uo8kd0b.Default Profile";
       sine.enable = true;
     };
   };
