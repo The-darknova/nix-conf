@@ -39,6 +39,17 @@
   '';
   home.file.".local/lib/caelestia/caelestiafox".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/caelestia-dots/zen/native_app/app.fish";
 
+  # Fix for virt-manager clipboard (copy from guest to host) failing on Wayland
+  home.file.".local/share/applications/virt-manager.desktop".text = ''
+    [Desktop Entry]
+    Name=Virtual Machine Manager
+    Icon=virt-manager
+    Exec=env GDK_BACKEND=x11 virt-manager %U
+    Terminal=false
+    Type=Application
+    Categories=System;Emulator;
+  '';
+
   home.file = {
     ".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/caelestia-dots/hypr";
     ".config/foot".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/caelestia-dots/foot";
